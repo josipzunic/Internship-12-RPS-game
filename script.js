@@ -35,11 +35,47 @@ async function generateGames(gameIdArray) {
     }
 }
 
+function displayGameDisplay() {
+    gameDisplay.style.display = "flex";
+    gameDisplay.style.justifyContent = "center";
+    gameDisplay.style.alignItems = "center";
+}
+
+function hideGameDisplay() {
+    gameDisplay.style.display = "none";
+}
+
+function hideNewGameDisplay() {
+    beginGameDisplay.style.display = "none";
+}
+
+function showLoader() {
+    loader.style.display = "block";
+}
+
+function hideLoader() {
+    loader.style.display = "none";
+}
+
+function displayNewGameDisplay() {
+    beginGameDisplay.style.display = "flex";
+}
+
+const gameDisplayButtons = document.querySelectorAll(".game-display button");
+const beginGameDisplay = document.querySelector(".begin-game");
+const returnButton = gameDisplayButtons[0];
+const startGameButton = gameDisplayButtons[1];
+const gameDisplay = document.querySelector(".game-display");
+const newGameButton = document.querySelector(".begin-game button");
+const loader = document.querySelector(".loader");
 let gameIdArray = [];
 
-const newGameButton = document.querySelector(".begin-game button");
 newGameButton.addEventListener("click", async () => {
+    hideNewGameDisplay();
+    showLoader();
     await generateGames(gameIdArray);
+    hideLoader();
+    displayGameDisplay();
 
     const query = gameIdArray.map((id) => `id=${id}`).join("&");
 
@@ -48,4 +84,9 @@ newGameButton.addEventListener("click", async () => {
     );
     const data = await response.json();
     console.log(data);
+});
+
+returnButton.addEventListener("click", () => {
+    hideGameDisplay();
+    displayNewGameDisplay();
 });

@@ -10,14 +10,17 @@
 }
 
 :root {
-    --main-theme-color: #192BC2;
+    --main-theme-color: #192bc2;
+    --secondaty-theme-color: #449DD1;
     --primary-text-color: white;
 }
 
 body {
     height: 100vh;
     width: 100vw;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .begin-game {
@@ -27,7 +30,11 @@ body {
     height: 100%;
 }
 
-.begin-game button {
+.game-display {
+    display: none;
+}
+
+button {
     padding: 1rem 2rem 1rem 2rem;
     font-size: 2rem;
     font-weight: bold;
@@ -38,9 +45,34 @@ body {
     cursor: pointer;
 }
 
-.begin-game button:hover {
+button:hover {
     background-color: white;
     color: var(--main-theme-color);
     font-weight: bold;
     border-color: var(--main-theme-color);
 }
+
+.game-display {
+    height: 100vh;
+    gap: 10px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--secondaty-theme-color);
+    border-bottom-color: var(--main-theme-color);
+    border-radius: 50%;
+    display: none;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
