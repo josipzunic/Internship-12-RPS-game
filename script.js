@@ -1,5 +1,5 @@
 function generateComputerMove() {
-    const moves = ["rock", "paper", "scissors"]
+    const moves = ["rock", "paper", "scissors"];
     return moves[Math.floor(Math.random() * moves.length)];
 }
 
@@ -17,11 +17,11 @@ async function generateGames(gameIdArray) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        name: `game-${i+1}`,
+                        name: `game-${i + 1}`,
                         data: {
                             playerMove: "pending",
                             computerMove: generateComputerMove(),
-                            gameSetId: groupId
+                            gameSetId: groupId,
                         },
                     }),
                 },
@@ -37,9 +37,15 @@ async function generateGames(gameIdArray) {
 
 let gameIdArray = [];
 
-await generateGames(gameIdArray);
-const query = gameIdArray.map(id => `id=${id}`).join("&");
+const newGameButton = document.querySelector(".begin-game button");
+newGameButton.addEventListener("click", async () => {
+    await generateGames(gameIdArray);
 
-const response = await fetch(`https://api.restful-api.dev/objects?${query}`);
-const data = await response.json();
-console.log(data);
+    const query = gameIdArray.map((id) => `id=${id}`).join("&");
+
+    const response = await fetch(
+        `https://api.restful-api.dev/objects?${query}`,
+    );
+    const data = await response.json();
+    console.log(data);
+});

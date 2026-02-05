@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald";
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("assets/fonts/Oswald/Oswald-VariableFont_wght.ttf");
+}
+
+:root {
+    --main-theme-color: #192BC2;
+    --primary-text-color: white;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.begin-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.begin-game button {
+    padding: 1rem 2rem 1rem 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--main-theme-color);
+    border: 2px solid var(--main-theme-color);
+    border-radius: 20px;
+    color: var(--primary-text-color);
+    cursor: pointer;
+}
+
+.begin-game button:hover {
+    background-color: white;
+    color: var(--main-theme-color);
+    font-weight: bold;
+    border-color: var(--main-theme-color);
+}
