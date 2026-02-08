@@ -125,11 +125,13 @@ button:hover {
     border: 5px solid var(--main-theme-color);
 }
 
-.winner {
+.winner-container {
     display: none;
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--main-theme-color);
-    position: relative;
-    bottom: 200px;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.winner-container span {
+    font-size: 5rem;
 }

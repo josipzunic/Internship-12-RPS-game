@@ -66,6 +66,26 @@ function playGame() {
     gameplayDisplay.style.display = "flex";
     versus.style.display = "block";
     computerMove.style.display = "flex";
+
+    rock.style.display = "block";
+    paper.style.display = "block";
+    scissors.style.display = "block";
+}
+
+function hideGame() {
+    gameplayDisplay.style.display = "none";
+    versus.style.display = "none";
+    computerMove.style.display = "none";
+}
+
+function resetComputerImage() {
+    const compImg = computerMove.querySelector("img");
+    compImg.src = "/assets/images/question-sign.png";
+}
+
+function hideWinner() {
+    winnerContainer.style.display = "none";
+    winnerContainerSpan.innerHTML = "WINNER: ";
 }
 
 async function getRequest(gameId) {
@@ -139,8 +159,10 @@ const computerMove = document.querySelector(".computer-move");
 const [rock, paper, scissors] = document.querySelectorAll(
     ".rock-paper-scissors-buttons img",
 );
-const winnerContainer = document.querySelector(".winner");
-const winnerContainerSpan = document.querySelector(".winner span");
+const winnerContainer = document.querySelector(".winner-container");
+const winnerContainerSpan = document.querySelector(".winner-container span");
+const nextGameButton = document.querySelector(".winner-container button");
+const game = document.querySelector(".rock-paper-scissors-game");
 let gameIdArray = [];
 let gameNumber = 1;
 const movesArray = [
@@ -200,7 +222,27 @@ movesArray.forEach(({ el, value }) => {
 
         const [computerChoice, playerChoice] = await getRequest(gameId);
         const winner = determineWinner(computerChoice, playerChoice);
-        winnerContainerSpan.innerHTML = winner;
-        winnerContainer.style.display = "block";
+        
+        winnerContainer.style.display = "flex";
+        winnerContainerSpan.innerHTML += " " + winner;
     });
+});
+
+nextGameButton.addEventListener("click", () => {
+    if (gameNumber > 5) {
+        gameNumber = 1;
+        hideGameDisplay();
+        displayNewGameDisplay();
+        hideGame();
+        resetComputerImage();
+        hideWinner();
+        return;
+    }
+    
+    hideWinner();
+    ["rock", "paper", "scissors"].forEach((move) => {
+        const moveEl = gameplayDisplay.querySelector(`.${move}`);
+        if (moveEl) moveEl.style.display = "block";
+    });
+    resetComputerImage();
 });
