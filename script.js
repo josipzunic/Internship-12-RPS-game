@@ -212,12 +212,12 @@ startGameButton.addEventListener("click", () => {
 });
 
 movesArray.forEach(({ el, value }) => {
-    movesArray.forEach(({ el }) => {
-        el.style.pointerEvents = "none";
-        el.style.opacity = "0.5";
-    });
-
     el.addEventListener("click", async () => {
+        movesArray.forEach(({ el }) => {
+            el.style.pointerEvents = "none";
+            el.style.opacity = "0.5";
+        });
+
         ["rock", "paper", "scissors"]
             .filter((move) => move !== value)
             .forEach((move) => {
