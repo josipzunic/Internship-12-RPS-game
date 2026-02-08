@@ -79,9 +79,9 @@ button:hover {
 
 .rock-paper-scissors {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 100px;
 }
 
 .rock-paper-scissors-buttons {
@@ -96,6 +96,13 @@ button:hover {
     width: 200px;
     border: 5px solid var(--main-theme-color);
     cursor: pointer;
+}
+
+.rock-paper-scissors-game {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
 .versus {
@@ -116,4 +123,13 @@ button:hover {
 .computer-move img {
     width: 200px;
     border: 5px solid var(--main-theme-color);
+}
+
+.winner {
+    display: none;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--main-theme-color);
+    position: relative;
+    bottom: 200px;
 }
