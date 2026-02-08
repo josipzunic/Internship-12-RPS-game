@@ -211,13 +211,13 @@ startGameButton.addEventListener("click", () => {
     playGame();
 });
 
-movesArray.forEach(({ element, value }) => {
-    movesArray.forEach(({ element }) => {
-        element.style.pointerEvents = "none";
-        element.style.opacity = "0.5";
+movesArray.forEach(({ el, value }) => {
+    movesArray.forEach(({ el }) => {
+        el.style.pointerEvents = "none";
+        el.style.opacity = "0.5";
     });
 
-    element.addEventListener("click", async () => {
+    el.addEventListener("click", async () => {
         ["rock", "paper", "scissors"]
             .filter((move) => move !== value)
             .forEach((move) => {
@@ -255,9 +255,9 @@ nextGameButton.addEventListener("click", () => {
         if (moveEl) moveEl.style.display = "block";
     });
 
-    movesArray.forEach(({ element }) => {
-        element.style.pointerEvents = "auto";
-        element.style.opacity = "1";
+    movesArray.forEach(({ el }) => {
+        el.style.pointerEvents = "auto";
+        el.style.opacity = "1";
     });
 
     resetComputerImage();
