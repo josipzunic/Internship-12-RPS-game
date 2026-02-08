@@ -215,6 +215,11 @@ startGameButton.addEventListener("click", () => {
     gameNumber = 1;
     hideGameDisplay();
     playGame();
+
+    movesArray.forEach(({ el }) => {
+        el.style.pointerEvents = "auto";
+        el.style.opacity = "1";
+    });
 });
 
 movesArray.forEach(({ el, value }) => {
@@ -334,7 +339,7 @@ reviewButton.addEventListener("click", async () => {
 
         const finalScore = `Winner is ${winner}: ${playerWinCount}:${computerWinCount}<br>Message from the winner: ${winnerMessage}`;
         const reviewItem = document.createElement("div");
-        reviewItem.innerText = finalScore;
+        reviewItem.innerHTML = finalScore;
 
         reviewItem.style.border = "5px solid #192bc2";
         reviewItem.style.fontSize = "2rem";
