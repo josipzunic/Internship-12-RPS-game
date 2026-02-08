@@ -171,6 +171,12 @@ const reviewContainer = document.querySelector(".review-container");
 const reviewList = document.querySelector(".review-list");
 let gameIdArray = [];
 let gameNumber = 1;
+const playerWinMessages = ["gg ez", "DUMP-ed", "win is undefined"];
+const computerWinMessages = [
+    "AI taking over",
+    "this is why RAM is expensive",
+    "404 skill not found",
+];
 const movesArray = [
     { el: rock, value: "rock" },
     { el: paper, value: "paper" },
@@ -286,7 +292,8 @@ reviewButton.addEventListener("click", async () => {
 
         let winner,
             playerWinCount = 0,
-            computerWinCount = 0;
+            computerWinCount = 0,
+            winnerMessage;
 
         data.forEach((game, index) => {
             winner = determineWinner(
@@ -308,11 +315,24 @@ reviewButton.addEventListener("click", async () => {
             reviewList.appendChild(reviewItem);
         });
 
-        if (playerWinCount > computerWinCount) winner = "player";
-        else if (playerWinCount < computerWinCount) winner = "computer";
-        else winner = "no one";
+        if (playerWinCount > computerWinCount) {
+            winner = "player";
+            winnerMessage =
+                playerWinMessages[
+                    Math.floor(Math.random() * playerWinMessages.length)
+                ];
+        } else if (playerWinCount < computerWinCount) {
+            winner = "computer";
+            winnerMessage =
+                computerWinMessages[
+                    Math.floor(Math.random() * computerWinMessages.length)
+                ];
+        } else {
+            winner = "no one";
+            winnerMessage = "twin, we tied, twin";
+        }
 
-        const finalScore = `Winner is ${winner}: ${playerWinCount}:${computerWinCount}`;
+        const finalScore = `Winner is ${winner}: ${playerWinCount}:${computerWinCount}<br>Message from the winner: ${winnerMessage}`;
         const reviewItem = document.createElement("div");
         reviewItem.innerText = finalScore;
 
