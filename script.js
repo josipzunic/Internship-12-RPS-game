@@ -253,10 +253,10 @@ reviewButton.addEventListener("click", async () => {
 
     reviewList.innerHTML = "";
 
+    reviewContainer.style.display = "flex";
+    
     hideGameDisplay();
     hideNewGameDisplay();
-    reviewList.style.display = "flex";
-    returnFromReviewButton.style.display = "block"; 
 
     try {
         const query = gameIdArray.map((id) => `id=${id}`).join("&");
@@ -303,6 +303,7 @@ reviewButton.addEventListener("click", async () => {
         reviewItem.style.width = "600px";
 
         reviewList.appendChild(reviewItem);
+        returnFromReviewButton.style.display = "block";
     } catch (error) {
         throw new Error("something went wrong", error);
     }
@@ -311,5 +312,6 @@ reviewButton.addEventListener("click", async () => {
 returnFromReviewButton.addEventListener("click", () => {
     reviewContainer.style.display = "none";
     returnFromReviewButton.style.display = "none";
-    displayGameDisplay();
+
+    displayNewGameDisplay(); 
 });
