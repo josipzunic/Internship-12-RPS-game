@@ -28,6 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    gap: 20px;
 }
 
 .game-display {
@@ -94,6 +95,8 @@ button:hover {
 
 .rock-paper-scissors-buttons img {
     width: 200px;
+    height: 200px;
+    aspect-ratio: 1/1;
     border: 5px solid var(--main-theme-color);
     cursor: pointer;
 }
@@ -122,6 +125,8 @@ button:hover {
 
 .computer-move img {
     width: 200px;
+    height: 200px;
+    aspect-ratio: 1/1;
     border: 5px solid var(--main-theme-color);
 }
 
@@ -134,4 +139,23 @@ button:hover {
 
 .winner-container span {
     font-size: 5rem;
+}
+
+.review-container button {
+    display: none;
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
