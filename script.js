@@ -177,6 +177,11 @@ const movesArray = [
     { el: scissors, value: "scissors" },
 ];
 
+const savedGameIds = localStorage.getItem("lastGameIds");
+if (savedGameIds) {
+    gameIdArray = JSON.parse(savedGameIds);
+}
+
 const moveAndImageSrc = {
     rock: "/assets/images/rockrock.png",
     paper: "/assets/images/Toilet-Paper.png",
@@ -185,9 +190,11 @@ const moveAndImageSrc = {
 
 newGameButton.addEventListener("click", async () => {
     gameIdArray = [];
+    localStorage.removeItem("lastGameIds");
     hideNewGameDisplay();
     showLoader();
     await generateGames(gameIdArray);
+    localStorage.setItem("lastGameIds", JSON.stringify(gameIdArray));
     hideLoader();
     displayGameDisplay();
 });
@@ -204,8 +211,13 @@ startGameButton.addEventListener("click", () => {
     playGame();
 });
 
-movesArray.forEach(({ el, value }) => {
-    el.addEventListener("click", async () => {
+movesArray.forEach(({ element, value }) => {
+    movesArray.forEach(({ element }) => {
+        element.style.pointerEvents = "none";
+        element.style.opacity = "0.5";
+    });
+
+    element.addEventListener("click", async () => {
         ["rock", "paper", "scissors"]
             .filter((move) => move !== value)
             .forEach((move) => {
@@ -242,6 +254,12 @@ nextGameButton.addEventListener("click", () => {
         const moveEl = gameplayDisplay.querySelector(`.${move}`);
         if (moveEl) moveEl.style.display = "block";
     });
+
+    movesArray.forEach(({ element }) => {
+        element.style.pointerEvents = "auto";
+        element.style.opacity = "1";
+    });
+
     resetComputerImage();
 });
 
@@ -254,7 +272,7 @@ reviewButton.addEventListener("click", async () => {
     reviewList.innerHTML = "";
 
     reviewContainer.style.display = "flex";
-    
+
     hideGameDisplay();
     hideNewGameDisplay();
 
@@ -313,5 +331,5 @@ returnFromReviewButton.addEventListener("click", () => {
     reviewContainer.style.display = "none";
     returnFromReviewButton.style.display = "none";
 
-    displayNewGameDisplay(); 
+    displayNewGameDisplay();
 });
